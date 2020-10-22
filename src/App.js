@@ -14,10 +14,10 @@ function App() {
 
   // Run code based on a given condition
   useEffect(() => {
+   
+     
     const hash = getTokenFromUrl();
-
-    window.location.hash = "";
-
+    window.location.hash = "";   
     const _token = hash.access_token;
     
     if (_token) {
@@ -38,6 +38,7 @@ function App() {
 
       });
 
+      
       spotify.getUserPlaylists().then((playlists) => {
         dispatch({
           type: "SET_PLAYLISTS",
@@ -46,6 +47,7 @@ function App() {
       });
 
       spotify.getPlaylist('3QnrZtSgZ7bGuOUiyyw4Np').then( response => (
+
         dispatch({
           type: "SET_DISCOVER_WEEKLY",
           discover_weekly: response,
@@ -54,6 +56,12 @@ function App() {
 
     }
     console.log("I HAVE A TOKEN", _token);    
+
+    dispatch({
+      type: "SET_SPOTIFY",
+      spotify: spotify
+    })  
+    
   }, []);
 
   console.log("USER IS ", user);

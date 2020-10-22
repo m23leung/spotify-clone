@@ -7,7 +7,9 @@ export const initialState = {
     item: null,
     spotify: null,
     discover_weekly: null,
-    top_artists: null
+    top_artists: null,
+    
+    track: null
     
     //token: "BQCEXQtiCs-qSrm98hsG6NS5hjGk___Srqar6MYnWW8rLXLCF_492VjQd049gHdsEOBoCZGWm663Vp0rN2JEiTBcLInx7ixGgXc7AWGc-LFrglLcT6QYoCU9Pxa3rBaEZg2MR1dhCoPxDO1x_G//EyqZkAgI6ADRFcfVGFMJLKZhguSMpk7ZZD",
 }
@@ -55,7 +57,12 @@ const reducer = (state, action) => {
         return {
             ...state,
             spotify: action.spotify,
-        };                                                               
+        };  
+        case "SET_SONG":
+        return {
+            ...state,
+            song: action.song,
+        };                                                                       
         default:
             return state;
     }
