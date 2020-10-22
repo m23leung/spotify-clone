@@ -4,7 +4,7 @@ Description: Front-end replica of the dashboard which showcases the user's Spoti
 
 Author: Mark Leung
 
-Live Demo URL: TBD
+Live Demo URL: http://mcleung-spotify.netlify.app
 
 Notes:
 
