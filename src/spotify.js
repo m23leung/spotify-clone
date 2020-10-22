@@ -2,7 +2,8 @@
 // documentation/web-playback-sdk/quick-start/#
 
 export const authEndpoint = "https://accounts.spotify.com/authorize";
-const redirectUri = "http://localhost:3000/";
+//const redirectUri = "http://localhost:3000/";
+const redirectUri = "http://mcleung-spotify.netlify.app/"
 const clientId = "a512583a46dc437bbdf282434a598e55"
 
 const scopes = [
