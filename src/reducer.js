@@ -8,8 +8,9 @@ export const initialState = {
     spotify: null,
     discover_weekly: null,
     top_artists: null,
-    
-    track: null
+    track: null,
+    devices: null,
+    volume_mute: false
     
     //token: "BQCEXQtiCs-qSrm98hsG6NS5hjGk___Srqar6MYnWW8rLXLCF_492VjQd049gHdsEOBoCZGWm663Vp0rN2JEiTBcLInx7ixGgXc7AWGc-LFrglLcT6QYoCU9Pxa3rBaEZg2MR1dhCoPxDO1x_G//EyqZkAgI6ADRFcfVGFMJLKZhguSMpk7ZZD",
 }
@@ -62,7 +63,17 @@ const reducer = (state, action) => {
         return {
             ...state,
             song: action.song,
-        };                                                                       
+        };  
+        case "SET_DEVICES":
+        return {
+            ...state,
+            devices: action.devices,
+        };      
+        case "SET_VOLUME_MUTE":
+        return {
+            ...state,
+            volume_mute: action.volume_mute,
+        };                                                                                      
         default:
             return state;
     }

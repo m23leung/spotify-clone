@@ -1,5 +1,9 @@
 import React from 'react'
+import Popup from 'reactjs-popup';
+
+import 'reactjs-popup/dist/index.css';
 import './css/Footer.css'
+
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import SkipNextIcon from '@material-ui/icons/SkipNext'
@@ -7,17 +11,35 @@ import ShuffleIcon from '@material-ui/icons/Shuffle'
 import RepeatIcon from '@material-ui/icons/Repeat'
 import { Grid, Slider } from '@material-ui/core'
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay'
+import DevicesIcon from '@material-ui/icons/Devices'
 import VolumeDownIcon from '@material-ui/icons/VolumeDown'
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import { useDataLayerValue } from './DataLayer'
 
 function Footer() {
 
-    const [{ song } , dispatch] = useDataLayerValue();
-        //console.log("SET SONG PLAYING", track);
-    
-        //track.name
-        //track.artists
-        //track.album.images[0].url
+    const [{ devices, song, volume_mute } , dispatch] = useDataLayerValue();
+
+    const setVolumeMute = () => (
+        dispatch({
+            type: "SET_VOLUME_MUTE",
+            volume_mute: ! volume_mute,
+          }) 
+    )
+
+    const handleSliderChange = (event, newValue) => {
+        if (newValue < 1) {
+            dispatch({
+                type: "SET_VOLUME_MUTE",
+                volume_mute: true,
+              })           
+        } else {
+            dispatch({
+                type: "SET_VOLUME_MUTE",
+                volume_mute: false,
+              })               
+        }
+      };
 
     return (
         <div className="footer">
@@ -40,11 +62,16 @@ function Footer() {
                     <Grid item>
                         <PlaylistPlayIcon />
                     </Grid>
-                    <Grid item>
-                        <VolumeDownIcon />
+                    <Popup trigger={ <Grid item><DevicesIcon /></Grid> } position="right center">
+                        
+                        <div>{devices ? devices.devices.map((device) => device.name).join(' ', ' ') : 'No device'}</div>
+
+                    </Popup>                    
+                    <Grid item onClick={ () => setVolumeMute() }>
+                        { volume_mute ? <VolumeOffIcon /> : <VolumeDownIcon /> }
                     </Grid>      
                     <Grid item xs>
-                        <Slider></Slider>
+                        <Slider onChange={handleSliderChange}></Slider>
                     </Grid>                               
                 </Grid>
             </div>                        

@@ -26,8 +26,9 @@ function App() {
         type: "SET_TOKEN",
         token: _token
       })
-
+      
       spotify.setAccessToken(_token);
+
 
       spotify.getMe().then( user => {
         
@@ -45,6 +46,17 @@ function App() {
           playlists: playlists,
         })
       });
+
+
+      spotify.getMyDevices().then((devices) => {
+        dispatch({
+          type: "SET_DEVICES",
+          devices: devices,
+        })
+
+        console.log("DEVICE", {devices});
+      });
+
 
       spotify.getPlaylist('3QnrZtSgZ7bGuOUiyyw4Np').then( response => (
 

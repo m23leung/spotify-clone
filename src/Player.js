@@ -3,6 +3,7 @@ import './css/Player.css'
 import Sidebar from './Sidebar'
 import Body from './Body'
 import Footer from './Footer'
+import Dropdown from './components/Dropdown'
 
 function Player({ spotify }) {
     return (
